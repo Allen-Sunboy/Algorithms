@@ -1,6 +1,6 @@
-#include <iostream>
-#include <iomanip>
 #include <ctime>
+#include <iomanip>
+#include <iostream>
 #include <random>
 
 #include <windows.h>
@@ -13,19 +13,15 @@ uniform_int_distribution<long long> u(0, 4294967295);
 long long A[200000007];
 int n;
 
-void shellSort(long long A[], int n)
-{
+void shellSort(long long A[], int n) {
     int gap = n;
-    while(gap > 1)
-    {
+    while (gap > 1) {
         gap = gap / 3 + 1;
-        for(int i = gap; i < n; i++)
-        {
+        for (int i = gap; i < n; i++) {
             long long key = A[i];
             int j = i - gap;
-            while(j >= 0 && A[j] > key)
-            {
-                A[j+gap] = A[j];
+            while (j >= 0 && A[j] > key) {
+                A[j + gap] = A[j];
                 j -= gap;
             }
             A[j + gap] = key;
@@ -33,9 +29,8 @@ void shellSort(long long A[], int n)
     }
 }
 
-void test(int n)
-{
-    for(int i = 0; i < n; i++)
+void test(int n) {
+    for (int i = 0; i < n; i++)
         A[i] = u(e);
 
     // for(int i = 0; i < n; i++)
@@ -51,17 +46,16 @@ void test(int n)
 
     QueryPerformanceCounter(&time_end);
 
-    double elap = (double)(time_end.QuadPart - time_start.QuadPart) / (double)freq.QuadPart * 1000000; // 单位 微秒
+    double elap = (double)(time_end.QuadPart - time_start.QuadPart) /
+                  (double)freq.QuadPart * 1000000; // 单位 微秒
     cout << setprecision(12) << elap << "\n";
 
     // for(int i = 0; i < n; i++)
     //     cout << A[i] << " ";
     // cout << "\n";
-
 }
 
-int main()
-{
+int main() {
     cin >> n;
 
     test(n);
@@ -73,5 +67,4 @@ int main()
     // }
 
     system("pause");
-
 }

@@ -1,18 +1,17 @@
-#include <iostream>
-#include <fstream>
 #include <ctime>
+#include <fstream>
+#include <iostream>
 #include <random>
 using namespace std;
 
-const string alphabet = "abcdefghijklmnopqrstuvwxyz0123456789 ~!@$%&()-_=+;:\'\",.?";
+const string alphabet =
+    "abcdefghijklmnopqrstuvwxyz0123456789 ~!@$%&()-_=+;:\'\",.?";
 
 char T[10000005];
 char P[1005];
 
-void generate(int n, int m)
-{
-    if(n < m)
-    {
+void generate(int n, int m) {
+    if (n < m) {
         std::cout << "error: must T.length >= P.length\n";
         return;
     }
@@ -27,15 +26,15 @@ void generate(int n, int m)
 
     srand(time(0));
 
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
         T[i] = alphabet[rand() % alphabetLength];
 
     default_random_engine e(time(0));
-    uniform_int_distribution<int> u(0, n-m);
+    uniform_int_distribution<int> u(0, n - m);
 
     int p = u(e);
-    for(int i = 0; i < m; i++)
-        P[i] = T[i+p];
+    for (int i = 0; i < m; i++)
+        P[i] = T[i + p];
 
     fout << T;
     fout.close();
@@ -43,11 +42,10 @@ void generate(int n, int m)
     std::cout << P << endl;
 }
 
-int main()
-{
+int main() {
     int n, m;
     cin >> n >> m;
     generate(n, m);
-    
+
     system("pause");
 }

@@ -1,6 +1,6 @@
-#include <iostream>
-#include <iomanip>
 #include <ctime>
+#include <iomanip>
+#include <iostream>
 #include <random>
 
 #include <windows.h>
@@ -13,24 +13,20 @@ uniform_int_distribution<long long> u(0, 4294967295);
 long long A[200000007];
 int n;
 
-void insertionSort(long long A[], int n)
-{
-    for(int j = 1; j < n; j++)
-    {
+void insertionSort(long long A[], int n) {
+    for (int j = 1; j < n; j++) {
         long long key = A[j];
         int i = j - 1;
-        while(i >= 0 && A[i] > key)
-        {
-            A[i+1] = A[i];
+        while (i >= 0 && A[i] > key) {
+            A[i + 1] = A[i];
             i--;
         }
-        A[i+1] = key;
+        A[i + 1] = key;
     }
 }
 
-void test(int n)
-{
-    for(int i = 0; i < n; i++)
+void test(int n) {
+    for (int i = 0; i < n; i++)
         A[i] = u(e);
 
     // for(int i = 0; i < n; i++)
@@ -46,17 +42,16 @@ void test(int n)
 
     QueryPerformanceCounter(&time_end);
 
-    double elap = (double)(time_end.QuadPart - time_start.QuadPart) / (double)freq.QuadPart * 1000000; // 单位 微秒
+    double elap = (double)(time_end.QuadPart - time_start.QuadPart) /
+                  (double)freq.QuadPart * 1000000; // 单位 微秒
     cout << setprecision(12) << elap << "\n";
 
     // for(int i = 0; i < n; i++)
     //     cout << A[i] << " ";
     // cout << "\n";
-
 }
 
-int main()
-{
+int main() {
     cin >> n;
 
     test(n);
@@ -68,5 +63,4 @@ int main()
     // }
 
     system("pause");
-
 }

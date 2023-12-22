@@ -1,21 +1,19 @@
-#include <iostream>
 #include <chrono>
+#include <iostream>
 
 using namespace std;
 using namespace std::chrono;
 
-long long F(long long n)
-{
-    if(n == 0)
+long long F(long long n) {
+    if (n == 0)
         return 0;
-    else if(n == 1)
+    else if (n == 1)
         return 1;
     else
-        return F(n-1) + F(n-2);
+        return F(n - 1) + F(n - 2);
 }
 
-void test(long long n)
-{
+void test(long long n) {
     cout << n;
     cout << " ";
 
@@ -29,14 +27,12 @@ void test(long long n)
 
     cout << result;
     cout << " ";
-    
+
     cout << "\n";
 }
 
-int main()
-{
-    for(int i = 0; i <= 50; i++)
+int main() {
+    for (int i = 0; i <= 50; i++)
         test(i);
     system("pause");
-
 }

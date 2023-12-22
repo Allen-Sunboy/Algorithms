@@ -1,6 +1,6 @@
-#include <iostream>
-#include <iomanip>
 #include <ctime>
+#include <iomanip>
+#include <iostream>
 #include <random>
 
 #include <windows.h>
@@ -13,44 +13,38 @@ uniform_int_distribution<long long> u(0, 4294967295);
 long long A[200000007];
 int n;
 
-void merge(long long A[], int p, int q, int r)
-{
+void merge(long long A[], int p, int q, int r) {
     // int x = r - p + 3;
     long long *an = new long long[r - p + 3];
     int i = p, j = q + 1, k = 0;
-    while(i <= q && j <= r)
-    {
-        if(A[i] < A[j])
+    while (i <= q && j <= r) {
+        if (A[i] < A[j])
             an[k++] = A[i++];
         else
             an[k++] = A[j++];
     }
-    while(i <= q)
+    while (i <= q)
         an[k++] = A[i++];
-    while(j <= r)
+    while (j <= r)
         an[k++] = A[j++];
-    for(i = 0; i < k; i++)
+    for (i = 0; i < k; i++)
         A[p + i] = an[i];
     delete[] an;
 }
 
-
-void mergeSort(long long A[], int p, int r)
-{
-    if(p < r)
-    {
+void mergeSort(long long A[], int p, int r) {
+    if (p < r) {
         int q = (p + r) / 2;
         mergeSort(A, p, q);
-        mergeSort(A, q+1, r);
+        mergeSort(A, q + 1, r);
         merge(A, p, q, r);
     }
 }
 
-void test(int n)
-{
-    for(int i = 0; i < n; i++)
+void test(int n) {
+    for (int i = 0; i < n; i++)
         A[i] = u(e);
-    
+
     // for(int i = 0; i < n; i++)
     //     cout << A[i] << " ";
     // cout << "\n";
@@ -60,21 +54,20 @@ void test(int n)
 
     QueryPerformanceCounter(&time_start);
 
-    mergeSort(A, 0, n-1);
+    mergeSort(A, 0, n - 1);
 
     QueryPerformanceCounter(&time_end);
 
-    double elap = (double)(time_end.QuadPart - time_start.QuadPart) / (double)freq.QuadPart * 1000000; // 单位 微秒
+    double elap = (double)(time_end.QuadPart - time_start.QuadPart) /
+                  (double)freq.QuadPart * 1000000; // 单位 微秒
     cout << setprecision(12) << elap << "\n";
 
     // for(int i = 0; i < n; i++)
     //     cout << A[i] << " ";
     // cout << "\n";
-
 }
 
-int main()
-{
+int main() {
     cin >> n;
 
     test(n);
@@ -86,5 +79,4 @@ int main()
     // }
 
     system("pause");
-
 }
